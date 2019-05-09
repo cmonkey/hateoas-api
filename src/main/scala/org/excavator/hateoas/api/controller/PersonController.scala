@@ -1,14 +1,13 @@
 package org.excavator.hateoas.api.controller
 
 import java.util
-import java.util.stream.Collectors
 
 import org.excavator.hateoas.api.entity.Person
 import org.excavator.hateoas.api.exception.NotFoundException
 import org.excavator.hateoas.api.repository.PersonRepository
 import org.excavator.hateoas.api.resource.PersonResource
 import org.springframework.hateoas.{Link, Resources}
-import org.springframework.http.{HttpStatus, ResponseEntity}
+import org.springframework.http.{ResponseEntity}
 import org.springframework.web.bind.annotation.{DeleteMapping, GetMapping, PathVariable, PostMapping, PutMapping, RequestBody, RequestMapping, RestController}
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
