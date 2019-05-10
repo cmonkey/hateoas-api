@@ -6,8 +6,9 @@ import org.excavator.hateoas.api.entity.Person
 import org.excavator.hateoas.api.exception.NotFoundException
 import org.excavator.hateoas.api.repository.PersonRepository
 import org.excavator.hateoas.api.resource.PersonResource
+import org.slf4j.LoggerFactory
 import org.springframework.hateoas.{Link, Resources}
-import org.springframework.http.{ResponseEntity}
+import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.{DeleteMapping, GetMapping, PathVariable, PostMapping, PutMapping, RequestBody, RequestMapping, RestController}
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder
@@ -16,12 +17,15 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder
 @RequestMapping(value = Array("/people"), produces = Array("application/hal+json"))
 class PersonController(val personRepository: PersonRepository) {
 
+  val logger = LoggerFactory.getLogger(classOf[PersonController])
+
   @GetMapping
   def all(): ResponseEntity[Resources[PersonResource]] = {
     val collection:java.util.List[PersonResource] = new util.ArrayList[PersonResource]()
 
       personRepository.findAll()
       .stream().forEach(person => {
+        logger.info("person = {}", person)
         collection.add(new PersonResource(person))
       })
 
