@@ -59,7 +59,7 @@ class PersonController(val personRepository: PersonRepository) {
 
     val uri = MvcUriComponentsBuilder.fromController(getClass)
       .path("/{id}")
-      .buildAndExpand(person.id.asInstanceOf[Object])
+      .buildAndExpand(person.getId.asInstanceOf[Object])
       .toUri
 
     ResponseEntity.created(uri).body(new PersonResource(person))
@@ -69,7 +69,7 @@ class PersonController(val personRepository: PersonRepository) {
   @PutMapping(Array("/{id}"))
   def put(@PathVariable id: Long, @RequestBody person: Person): ResponseEntity[PersonResource] = {
 
-    person.copy(id)
+    person.setId(id)
     personRepository.save(person)
 
     val resource = new PersonResource(person)
