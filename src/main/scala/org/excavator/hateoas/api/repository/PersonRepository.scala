@@ -10,7 +10,7 @@ import org.springframework.stereotype.Component
 @Component
 class PersonRepository {
   def deleteById(id: Long) = {
-    persons.removeIf(p => p.id == id)
+    persons.removeIf(p => p.getId == id)
   }
 
   def save(person: Person) = {
@@ -18,7 +18,7 @@ class PersonRepository {
   }
 
   def findById(id: Long) = {
-    persons.stream().filter(person => person.id == id).findFirst()
+    persons.stream().filter(person => person.getId == id).findFirst()
   }
 
   val persons = new util.ArrayList[Person]()

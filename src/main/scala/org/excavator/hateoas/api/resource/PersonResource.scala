@@ -7,5 +7,5 @@ import org.springframework.hateoas.mvc.ControllerLinkBuilder._
 
 class PersonResource(person: Person) extends ResourceSupport {
       add(linkTo(classOf[PersonController]).withRel("people"));
-      add(linkTo(methodOn(classOf[PersonController]).get(person.id)).withSelfRel());
+      add(linkTo(methodOn(classOf[PersonController]).get(person.getId)).withSelfRel());
 }
